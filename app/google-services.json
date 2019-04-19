@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "204601712703",
+    "firebase_url": "https://house-21f1b.firebaseio.com",
+    "project_id": "house-21f1b",
+    "storage_bucket": "house-21f1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204601712703:android:e9642572cb6253d3",
+        "android_client_info": {
+          "package_name": "com.example.pccu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204601712703-pggmh9m64jfu69jbh7ka9j4lh71u44gn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pccu",
+            "certificate_hash": "7f2300f6715a48d703a237ed0571249a1c246857"
+          }
+        },
+        {
+          "client_id": "204601712703-r5he6auha6tqgbma97v02jmnk717naot.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pccu",
+            "certificate_hash": "e546cf7faede16a4ba7811d2ff6e28faaa954aa2"
+          }
+        },
+        {
+          "client_id": "204601712703-2aeknnqnmu8dkr0llrun3h1jg8sdtfft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFzmpJS6RUP0CaE_Oa2hLbbIC53wJp7NU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204601712703-2aeknnqnmu8dkr0llrun3h1jg8sdtfft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

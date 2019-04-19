@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" >
+        <item
+            android:id="@+id/action_re"
+            android:icon="@drawable/re"
+            android:title="a"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/action_notification"
+            android:icon="@drawable/button_rounde"
+            android:title="b"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/action_item1"
+            android:title="c"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_item2"
+            android:title="d"
+            app:showAsAction="never" />
+    </menu>
