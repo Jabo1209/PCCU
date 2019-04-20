@@ -26,7 +26,7 @@ public class Signin extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
-    
+
 
     public void Bt_back(View v){
         Intent it = new Intent(Signin.this, MainActivity.class);

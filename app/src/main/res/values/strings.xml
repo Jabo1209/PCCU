@@ -18,4 +18,5 @@
     <string name="plz_input_pw">請輸入密碼</string>
     <string name="register_success">註冊成功</string>
     <string name="signout">登出</string>
+    <string name="bt_back">返回</string>
 </resources>

@@ -20,7 +20,7 @@ public class Search extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    public void click(View v){
+    public void Bt_back(View v){
         Intent it = new Intent(Search.this, MainActivity.class);
         startActivity(it);
         finish();

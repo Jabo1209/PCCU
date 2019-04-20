@@ -37,6 +37,12 @@ public class Registered extends AppCompatActivity {
         initData();
     }
 
+    public void Bt_back(View v){
+        Intent it = new Intent(Registered.this, MainActivity.class);
+        startActivity(it);
+        finish();
+    }
+
     private void initData() {
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
