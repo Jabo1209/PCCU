@@ -28,10 +28,13 @@
         <activity
             android:name=".Signin"
             android:layout_gravity="center"
-            android:label="@string/bt1" />
+            android:label="@string/sing_in" />
         <activity
             android:name=".Search"
             android:label="預約看屋" />
+        <activity
+            android:name=".SigninSuccess"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

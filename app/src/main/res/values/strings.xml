@@ -1,12 +1,11 @@
 <resources>
     <string name="app_name">PCCU租屋網</string>
-    <string name="bt1">登入</string>
+    <string name="signin_btn">登入</string>
     <string name="textView">文大租屋</string>
-    <string name="textView2">TextView</string>
     <string name="sing_in">會員登入</string>
     <string name="id">請輸入帳號(電子郵件或手機號碼)</string>
-    <string name="password">請輸入密碼</string>
-    <string name="bt3">註冊會員</string>
+    <string name="password">密碼</string>
+    <string name="registered">註冊會員</string>
     <string name="bt4">忘記密碼?</string>
     <string name="tv3">註冊會員</string>
     <string name="tv7">租屋搜尋</string>
@@ -19,4 +18,9 @@
     <string name="register_success">註冊成功</string>
     <string name="signout">登出</string>
     <string name="bt_back">返回</string>
+    <string name="sign_success">登入成功</string>
+    <string name="landlord">房東</string>
+    <string name="student">學生</string>
+    <string name="account_id">房東(請輸入身分證)/學生(請輸入學號)</string>
+    <string name="emailckeck">請到信箱做驗證</string>
 </resources>

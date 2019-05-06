@@ -6,19 +6,30 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registered extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String account;
     private String password;
@@ -27,12 +38,15 @@ public class Registered extends AppCompatActivity {
     private EditText accountEdit;
     private EditText passwordEdit;
     private Button signUpBtn;
-    private FirebaseUser user;
-    private Button verificationEmail;
+    private RadioButton landlord,student;
+    private RadioGroup radiogroup;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered);
+
         initView();
         initData();
     }
@@ -56,6 +70,9 @@ public class Registered extends AppCompatActivity {
         passwordLayout.setErrorEnabled(true);
         accoutLayout.setErrorEnabled(true);
         signUpBtn = (Button) findViewById(R.id.signup_button);
+        landlord=(RadioButton) findViewById(R.id.landlord_radiobtn);
+        student=(RadioButton) findViewById(R.id.student_radiobtn);
+        radiogroup = (RadioGroup)findViewById(R.id.radiogroup);
 
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +80,7 @@ public class Registered extends AppCompatActivity {
             public void onClick(View v) {
                 String account = accountEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
+
                 if(TextUtils.isEmpty(account)){
                     accoutLayout.setError(getString(R.string.plz_input_accout));
                     passwordLayout.setError("");
@@ -102,6 +120,59 @@ public class Registered extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.landlord_radiobtn)
+                {
+                    String account = accountEdit.getText().toString();
+                    String password = passwordEdit.getText().toString();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put(account, password);
+
+                    // Add a new document with a generated ID
+                    db.collection("landlord")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.i("回應結果","成功");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.i("回應結果","新增失敗");
+                                }
+                            });
+                }else if(checkedId==R.id.student_radiobtn)
+                {
+                    String account = accountEdit.getText().toString();
+                    String password = passwordEdit.getText().toString();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put(account, password);
+
+                    // Add a new document with a generated ID
+                    db.collection("student")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.i("回應結果","成功");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.i("回應結果","新增失敗");
+                                }
+                            });
+                }
+
             }
         });
     }

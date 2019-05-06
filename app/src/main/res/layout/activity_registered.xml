@@ -20,10 +20,11 @@
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/account_layout"
         android:id="@+id/password_layout"
+        android:layout_below="@id/account_layout"
         android:layout_width="200dp"
         android:layout_height="wrap_content">
+
 
         <EditText
             android:id="@+id/password_edit"
@@ -31,18 +32,55 @@
             android:textSize="15sp"
             android:textColor="#000000"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
 
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/choose_layout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_layout">
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/landlord_radiobtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/landlord" />
+
+            <RadioButton
+                android:id="@+id/student_radiobtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/student" />
+        </RadioGroup>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/accountid_layout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_layout"/>
+
     <Button
         android:id="@+id/signup_button"
         android:text="@string/signup"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password_layout"/>
+        android:layout_below="@+id/choose_layout"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/back_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/signup_button"

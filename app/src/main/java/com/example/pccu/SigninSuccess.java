@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SigninSuccess extends AppCompatActivity {
 
     private ImageButton ibtnDownload=null;
@@ -22,10 +24,19 @@ public class SigninSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signinsuccess);
 
-
+        btnSignout = (Button) findViewById(R.id.Signout);
+        btnSignout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent();
+                intent.setClass(SigninSuccess.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         //取得控制項物件
         initViews();
-
         //取消ActionBar
         getSupportActionBar().hide();
         //取消狀態欄
@@ -38,7 +49,6 @@ public class SigninSuccess extends AppCompatActivity {
 
     private void initViews()
     {
-        btnSignout = (Button)findViewById(R.id.main_signout);
         ibtnDownload=(ImageButton)super.findViewById(R.id.imageButton);
         ibtnDownload.setOnClickListener(new DownloadOnClickListener1());
         ibtnDownload=(ImageButton)super.findViewById(R.id.imageButton2);
@@ -47,13 +57,6 @@ public class SigninSuccess extends AppCompatActivity {
         ibtnDownload.setOnClickListener(new DownloadOnClickListener3());
     }
 
-
-    //按下 登出 的結果
-    public void Signout(View view){
-        Intent it = new Intent(SigninSuccess.this, MainActivity.class);
-        startActivity(it);
-        finish();
-    }
 
     //按下 租屋搜尋的結果
     private class DownloadOnClickListener1 implements OnClickListener{
