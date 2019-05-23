@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         Intent it = new Intent(MainActivity.this, Signin.class);
         startActivity(it);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         finish();
     }
 

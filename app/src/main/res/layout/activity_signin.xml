@@ -1,44 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/account_layout"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
         android:layout_width="200dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/account_edit"
-            android:hint="@string/account"
-            android:textSize="15sp"
-            android:textColor="#000000"
+        android:layout_height="261dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_layout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/account_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_layout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/account_layout">
+
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/password_layout"
+                android:hint="@string/password"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RadioGroup
+            android:id="@id/radiogroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_below="@id/account_layout"
-        android:id="@+id/password_layout"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/password_edit"
-            android:hint="@string/password"
-            android:textSize="15sp"
-            android:textColor="#000000"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </android.support.design.widget.TextInputLayout>
-    <Button
-        android:layout_below="@id/password_layout"
-        android:text="@string/sing_in"
-        android:id="@+id/signin_btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/registered_btn"
-        android:layout_below="@id/signin_btn"
-        android:text="@string/registered"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/password_layout">
+
+            <RadioButton
+                android:id="@+id/landlord_radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="房東" />
+
+            <RadioButton
+                android:id="@+id/student_radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="學生" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/signin_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiogroup"
+            android:layout_marginTop="0dp"
+            android:text="@string/signin_btn" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="422dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registered_btn"
+            android:onClick="Bt_back"
+            android:text="返回" />
+
+        <Button
+            android:id="@+id/registered_btn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signin_btn"
+            android:text="@string/registered" />
+    </LinearLayout>
+
+</LinearLayout>

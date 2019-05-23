@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registered" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,22 +18,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Signin"
-            android:layout_gravity="center"
-            android:label="@string/sing_in" />
+            android:label="會員登入"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Registered"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Search"
-            android:label="預約看屋" />
-        <activity
-            android:name=".SigninSuccess"
+            android:label="預約看屋"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".StudentSigninSuccess"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LandlordSigninSuccess"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Upload"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

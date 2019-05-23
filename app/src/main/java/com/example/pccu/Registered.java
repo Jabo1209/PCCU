@@ -21,9 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +74,63 @@ public class Registered extends AppCompatActivity {
         student=(RadioButton) findViewById(R.id.student_radiobtn);
         radiogroup = (RadioGroup)findViewById(R.id.radiogroup);
 
+        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.landlord_radiobtn)
+                {
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String account = accountEdit.getText().toString();
+                    String password = passwordEdit.getText().toString();
+
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Password",password);
+                    user.put("Account",account);
+                    user.put("Date",new Date());
+
+                    db.collection("landlordinfo")
+                            .document(account)
+                            .set(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.i("資料庫新增", "新增成功");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.i("資料庫新增", "新增失敗");
+                                }
+                            });
+                }else if(checkedId==R.id.student_radiobtn) {
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String account = accountEdit.getText().toString();
+                    String password = passwordEdit.getText().toString();
+
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Password", password);
+                    user.put("Account", account);
+                    user.put("Date", new Date());
+
+                    db.collection("studentinfo")
+                            .document(account)
+                            .set(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.i("資料庫新增", "新增成功");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.i("資料庫新增", "新增失敗");
+                                }
+                            });
+                }
+
+            }
+        });
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +163,7 @@ public class Registered extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         Toast.makeText(Registered.this, "已寄送Email至您的信箱請確認", Toast.LENGTH_SHORT).show();
+                                                        Log.i("回應","已寄送Email至您的信箱請確認");
                                                     } else{
                                                         Toast.makeText(Registered.this, "Email 驗證:"+task.getException().toString(), Toast.LENGTH_SHORT).show();
                                                     }
@@ -120,59 +178,6 @@ public class Registered extends AppCompatActivity {
                                 }
                             }
                         });
-            }
-        });
-
-        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.landlord_radiobtn)
-                {
-                    String account = accountEdit.getText().toString();
-                    String password = passwordEdit.getText().toString();
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put(account, password);
-
-                    // Add a new document with a generated ID
-                    db.collection("landlord")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.i("回應結果","成功");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.i("回應結果","新增失敗");
-                                }
-                            });
-                }else if(checkedId==R.id.student_radiobtn)
-                {
-                    String account = accountEdit.getText().toString();
-                    String password = passwordEdit.getText().toString();
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put(account, password);
-
-                    // Add a new document with a generated ID
-                    db.collection("student")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.i("回應結果","成功");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.i("回應結果","新增失敗");
-                                }
-                            });
-                }
-
             }
         });
     }
