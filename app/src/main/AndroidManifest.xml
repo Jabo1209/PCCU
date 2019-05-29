@@ -39,7 +39,6 @@
         <activity
             android:name=".LandlordSigninSuccess"
             android:screenOrientation="portrait" />
-        <activity android:name=".FragmentList_chateoom$chatroom" />
     </application>
 
 </manifest>

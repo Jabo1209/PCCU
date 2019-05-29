@@ -71,14 +71,12 @@ public class Signin extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId==R.id.landlord_radiobtn){
                     final String account = accountEdit.getText().toString();
-                    final String password = passwordEdit.getText().toString();
                     DocumentReference ref=db.collection("landlordinfo").document(account);
                     landlordId=ref.getId();
                     Log.i("回傳ID",landlordId);
                 }
                 else if(checkedId==R.id.student_radiobtn){
                     final String account = accountEdit.getText().toString();
-                    final String password = passwordEdit.getText().toString();
                     DocumentReference ref=db.collection("landlordinfo").document(account);
                     String studentId=ref.getId();
                     Log.i("回傳ID",studentId);
