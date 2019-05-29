@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -51,9 +50,6 @@ public class Signin extends AppCompatActivity {
 
         //取消ActionBar
         getSupportActionBar().hide();
-        //取消狀態欄
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void initView() {
@@ -119,7 +115,7 @@ public class Signin extends AppCompatActivity {
                                         if (landlordId.equals(account)) {
                                             Log.i("比對結果", "比對成功");
                                             Intent intent = new Intent();
-                                            intent.setClass(Signin.this, LandlordSigninSuccess.class);
+                                            intent.setClass(Signin.this, bottombar.class);
                                             startActivity(intent);
                                         } else if (studentId.equals(account)) {
                                             Log.i("比對結果", "比對成功");

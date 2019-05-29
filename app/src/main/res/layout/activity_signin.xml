@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/pccu"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="200dp"
         android:layout_height="261dp">
@@ -19,6 +39,7 @@
                 android:id="@+id/account_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:drawable/alert_light_frame"
                 android:hint="@string/account"
                 android:textColor="#000000"
                 android:textSize="15sp" />
@@ -34,7 +55,9 @@
                 android:id="@+id/password_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/password_layout"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:background="@android:drawable/alert_light_frame"
                 android:hint="@string/password"
                 android:textColor="#000000"
                 android:textSize="15sp" />
@@ -52,14 +75,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="房東" />
+                android:text="房東"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/student_radiobtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="學生" />
+                android:text="學生"
+                android:textStyle="bold"/>
         </RadioGroup>
 
         <Button

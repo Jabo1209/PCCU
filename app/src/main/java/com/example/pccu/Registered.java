@@ -49,10 +49,12 @@ public class Registered extends AppCompatActivity {
 
         initView();
         initData();
+        //取消ActionBar
+        getSupportActionBar().hide();
     }
 
     public void Bt_back(View v){
-        Intent it = new Intent(Registered.this, MainActivity.class);
+        Intent it = new Intent(Registered.this, Signin.class);
         startActivity(it);
         finish();
     }

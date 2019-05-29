@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -14,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton ibtnDownload=null;
     private Button btnLogin; //登入按鈕
-
 
     @Override
 
@@ -27,12 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         //取消ActionBar
         getSupportActionBar().hide();
-        //取消狀態欄
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
     }
-
-
 
 
     private void initViews()
@@ -51,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         Intent it = new Intent(MainActivity.this, Signin.class);
         startActivity(it);
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         finish();
     }
 

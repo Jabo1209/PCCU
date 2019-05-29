@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".bottombar" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,23 +25,21 @@
         <activity
             android:name=".Signin"
             android:label="會員登入"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Registered"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Search"
             android:label="預約看屋"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StudentSigninSuccess"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LandlordSigninSuccess"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Upload"
-            android:screenOrientation="portrait" />
+        <activity android:name=".FragmentList_chateoom$chatroom" />
     </application>
 
 </manifest>

@@ -61,7 +61,7 @@ public class LandlordSigninSuccess extends AppCompatActivity {
     //按下 上傳租屋資訊的結果
     private class DownloadOnClickListener1 implements OnClickListener{
         public void onClick(View v){
-                Intent it = new Intent(LandlordSigninSuccess.this, Upload.class);
+                Intent it = new Intent(LandlordSigninSuccess.this, FragmentList_upload.Upload.class);
                 startActivity(it);
                 finish();
         }

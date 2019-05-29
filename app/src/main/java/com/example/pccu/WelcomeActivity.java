@@ -28,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity{
                 case GOTO_LOGIN_ACTIVITY:
                     Intent intent = new Intent();
                     //將原本Activity的換成MainActivity
-                    intent.setClass(WelcomeActivity.this, MainActivity.class);
+                    intent.setClass(WelcomeActivity.this, Signin.class);
                     startActivity(intent);
                     finish();
                     break;

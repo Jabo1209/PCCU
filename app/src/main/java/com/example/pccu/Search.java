@@ -19,9 +19,7 @@ public class Search extends AppCompatActivity {
 
         //取消ActionBar
         getSupportActionBar().hide();
-        //取消狀態欄
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         Spinner spinner1=(Spinner)findViewById(R.id.spinner);
         Spinner spinner2=(Spinner)findViewById(R.id.spinner2);
