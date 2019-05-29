@@ -36,9 +36,6 @@
         <activity
             android:name=".StudentSigninSuccess"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".LandlordSigninSuccess"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

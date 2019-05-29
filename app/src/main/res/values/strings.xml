@@ -36,4 +36,5 @@
     <string name="internet">網路</string>
     <string name="upload_image">上傳圖片</string>
     <string name="type_in">請輸入</string>
+    <string name="send">送出</string>
 </resources>

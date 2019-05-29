@@ -14,7 +14,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -30,7 +30,7 @@
             app:counterMaxLength="30">
 
             <EditText
-                android:id="@+id/textView10"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -133,7 +133,7 @@
             app:hintEnabled="false">
 
             <EditText
-                android:id="@+id/textView18"
+                android:id="@+id/money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -163,7 +163,7 @@
             app:hintEnabled="false">
 
             <EditText
-                android:id="@+id/textView20"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -254,7 +254,7 @@
             android:text="@string/remark" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/remark"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -271,10 +271,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/picture"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/upload_image" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/send" />
     </LinearLayout>
 
 </LinearLayout>
