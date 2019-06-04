@@ -37,4 +37,8 @@
     <string name="upload_image">上傳圖片</string>
     <string name="type_in">請輸入</string>
     <string name="send">送出</string>
+    <string name="pick_img">選擇照片</string>
+    <string name="upload_success">上傳成功</string>
+    <string name="plz_pick_img">請選擇照片</string>
+    <string name="loading_img_fail">讀取圖片失敗</string>
 </resources>

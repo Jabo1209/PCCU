@@ -11,7 +11,7 @@ import java.util.List;
 
 
 
-public class bottombar extends AppCompatActivity {
+public class landlordsigninsuccess extends AppCompatActivity {
 
     private ViewPager myViewPager;
     private TabLayout tabLayout;
@@ -41,7 +41,7 @@ public class bottombar extends AppCompatActivity {
         FragmentList_homepage myFragment0 = new FragmentList_homepage();
         FragmentList_houseinfo myFragment1 = new FragmentList_houseinfo();
         FragmentList_upload myFragment2 = new FragmentList_upload();
-        FragmentList_chateoom myFragment3 = new FragmentList_chateoom();
+        FragmentList_chateroom myFragment3 = new FragmentList_chateroom();
         FragmentList_menu myFragment4 = new FragmentList_menu();
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(myFragment0);

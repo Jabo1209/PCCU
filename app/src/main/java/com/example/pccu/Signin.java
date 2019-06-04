@@ -113,7 +113,7 @@ public class Signin extends AppCompatActivity {
                                         if (landlordId.equals(account)) {
                                             Log.i("比對結果", "比對成功");
                                             Intent intent = new Intent();
-                                            intent.setClass(Signin.this, bottombar.class);
+                                            intent.setClass(Signin.this, landlordsigninsuccess.class);
                                             startActivity(intent);
                                         } else if (studentId.equals(account)) {
                                             Log.i("比對結果", "比對成功");

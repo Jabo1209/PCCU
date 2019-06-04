@@ -172,7 +172,7 @@ public class Registered extends AppCompatActivity {
                                                 }
                                             });
                                     Intent intent = new Intent();
-                                    intent.setClass(Registered.this, MainActivity.class);
+                                    intent.setClass(Registered.this, landlordsigninsuccess.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
