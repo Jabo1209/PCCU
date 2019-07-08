@@ -1,4 +1,4 @@
-package com.example.pccu;
+package com.example.pccu.Registered;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.pccu.Login.Signin;
+import com.example.pccu.LoginSuccess.LandlordSigninSuccess;
+import com.example.pccu.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -172,7 +175,7 @@ public class Registered extends AppCompatActivity {
                                                 }
                                             });
                                     Intent intent = new Intent();
-                                    intent.setClass(Registered.this, landlordsigninsuccess.class);
+                                    intent.setClass(Registered.this, LandlordSigninSuccess.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

@@ -1,4 +1,4 @@
-package com.example.pccu;
+package com.example.pccu.Landlord_Fragment;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.pccu.R;
+import com.example.pccu.UploadListAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +40,7 @@ import java.util.Map;
 import static android.app.Activity.RESULT_OK;
 
 
-public class FragmentList_upload extends Fragment {
+public class LS_FragmentList_upload extends Fragment {
 
     private Spinner spinner1,spinner2,spinner3,spinner4,spinner5,spinner6;
     private EditText et_title,et_money,et_address,et_remark;
@@ -86,11 +88,13 @@ public class FragmentList_upload extends Fragment {
 
                     String fileName = getFileName(fileUri);
 
+                    db_title=et_title.getText().toString();
+
                     fileNameList.add(fileName);
                     fileDoneList.add("uploading");
                     uploadListAdapter.notifyDataSetChanged();
 
-                    StorageReference fileToUpload = mStorage.child("Images").child(fileName);
+                    StorageReference fileToUpload = mStorage.child(db_title).child(fileName);
 
                     final int finalI = i;
                     fileToUpload.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -175,12 +179,11 @@ public class FragmentList_upload extends Fragment {
         mSelectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select Picture"), RESULT_LOAD_IMAGE);
+                startActivityForResult(Intent.createChooser(intent,"選擇照片"), RESULT_LOAD_IMAGE);
             }
         });
 

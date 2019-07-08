@@ -1,4 +1,4 @@
-package com.example.pccu;
+package com.example.pccu.Landlord_Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,13 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pccu.R;
 
 
-public class FragmentList_menu extends Fragment{
+public class LS_FragmentList_homepage extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_menu, container, false);
+        View view = inflater.inflate(R.layout.activity_homepage, container, false);
         return view;
     }
 }

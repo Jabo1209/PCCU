@@ -1,4 +1,4 @@
-package com.example.pccu;
+package com.example.pccu.LoginSuccess;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -6,12 +6,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.pccu.Landlord_Fragment.LS_FragmentList_chateroom;
+import com.example.pccu.Landlord_Fragment.LS_FragmentList_homepage;
+import com.example.pccu.Landlord_Fragment.LS_FragmentList_houseinfo;
+import com.example.pccu.Landlord_Fragment.LS_FragmentList_menu;
+import com.example.pccu.Landlord_Fragment.LS_FragmentList_upload;
+import com.example.pccu.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-public class landlordsigninsuccess extends AppCompatActivity {
+public class LandlordSigninSuccess extends AppCompatActivity {
 
     private ViewPager myViewPager;
     private TabLayout tabLayout;
@@ -38,11 +45,11 @@ public class landlordsigninsuccess extends AppCompatActivity {
     }
 
     private void setViewPager(){
-        FragmentList_homepage myFragment0 = new FragmentList_homepage();
-        FragmentList_houseinfo myFragment1 = new FragmentList_houseinfo();
-        FragmentList_upload myFragment2 = new FragmentList_upload();
-        FragmentList_chateroom myFragment3 = new FragmentList_chateroom();
-        FragmentList_menu myFragment4 = new FragmentList_menu();
+        LS_FragmentList_homepage myFragment0 = new LS_FragmentList_homepage();
+        LS_FragmentList_houseinfo myFragment1 = new LS_FragmentList_houseinfo();
+        LS_FragmentList_upload myFragment2 = new LS_FragmentList_upload();
+        LS_FragmentList_chateroom myFragment3 = new LS_FragmentList_chateroom();
+        LS_FragmentList_menu myFragment4 = new LS_FragmentList_menu();
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(myFragment0);
         fragmentList.add(myFragment1);

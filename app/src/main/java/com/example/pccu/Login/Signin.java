@@ -1,4 +1,4 @@
-package com.example.pccu;
+package com.example.pccu.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.pccu.LoginSuccess.StudentSigninSuccess;
+import com.example.pccu.LoginSuccess.LandlordSigninSuccess;
+import com.example.pccu.MainActivity;
+import com.example.pccu.R;
+import com.example.pccu.Registered.Registered;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,6 +42,7 @@ public class Signin extends AppCompatActivity {
     private RadioGroup radiogroup;
     private RadioButton landlord,student;
     private String landlordId,studentId;
+    private int number=0;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -69,17 +75,19 @@ public class Signin extends AppCompatActivity {
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.landlord_radiobtn){
-                    final String account = accountEdit.getText().toString();
-                    DocumentReference ref=db.collection("landlordinfo").document(account);
-                    landlordId=ref.getId();
-                    Log.i("回傳ID",landlordId);
-                }
-                else if(checkedId==R.id.student_radiobtn){
-                    final String account = accountEdit.getText().toString();
-                    DocumentReference ref=db.collection("landlordinfo").document(account);
-                    String studentId=ref.getId();
-                    Log.i("回傳ID",studentId);
+                if(accountEdit.getText().toString().matches("")) {
+                    Toast.makeText(Signin.this,"請輸入帳號",Toast.LENGTH_SHORT).show();
+                    if(checkedId==R.id.landlord_radiobtn){
+                        number=1;
+                    }else if(checkedId==R.id.student_radiobtn){
+                        number=2;
+                    }
+                }else if(!accountEdit.getText().toString().matches("")){
+                    if(checkedId==R.id.landlord_radiobtn){
+                        number=1;
+                    }else if(checkedId==R.id.student_radiobtn){
+                        number=2;
+                    }
                 }
             }
         });
@@ -109,11 +117,12 @@ public class Signin extends AppCompatActivity {
                                     user = FirebaseAuth.getInstance().getCurrentUser();
                                     boolean emailVerified = user.isEmailVerified();
                                     if (emailVerified == true) {//確認是否驗證信箱
+                                        check(number);
                                         Toast.makeText(Signin.this, R.string.sign_success, Toast.LENGTH_SHORT).show();
                                         if (landlordId.equals(account)) {
                                             Log.i("比對結果", "比對成功");
                                             Intent intent = new Intent();
-                                            intent.setClass(Signin.this, landlordsigninsuccess.class);
+                                            intent.setClass(Signin.this, LandlordSigninSuccess.class);
                                             startActivity(intent);
                                         } else if (studentId.equals(account)) {
                                             Log.i("比對結果", "比對成功");
@@ -132,20 +141,34 @@ public class Signin extends AppCompatActivity {
             }
         });
 
-                registeredBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setClass(Signin.this, Registered.class);
-                        startActivity(intent);
-                    }
-                });
+        registeredBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Signin.this, Registered.class);
+                startActivity(intent);
             }
-
-
-            public void Bt_back(View v) {
-                Intent it = new Intent(Signin.this, MainActivity.class);
-                startActivity(it);
-                finish();
-            }
+        });
     }
+
+    public void check(int checkedId){
+        if(checkedId==1){
+            final String account = accountEdit.getText().toString();
+            DocumentReference ref=db.collection("landlordinfo").document(account);
+            landlordId=ref.getId();
+            Log.i("回傳ID",landlordId);
+        } else if(checkedId==2){
+            final String account = accountEdit.getText().toString();
+            DocumentReference ref=db.collection("studentinfo").document(account);
+            String studentId=ref.getId();
+            Log.i("回傳ID",studentId);
+        }
+    }
+
+
+    public void Bt_back(View v) {
+        Intent it = new Intent(Signin.this, MainActivity.class);
+        startActivity(it);
+        finish();
+    }
+}
