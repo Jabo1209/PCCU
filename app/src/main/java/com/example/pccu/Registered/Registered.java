@@ -15,7 +15,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.pccu.Login.Signin;
-import com.example.pccu.LoginSuccess.LandlordSigninSuccess;
 import com.example.pccu.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -175,7 +174,7 @@ public class Registered extends AppCompatActivity {
                                                 }
                                             });
                                     Intent intent = new Intent();
-                                    intent.setClass(Registered.this, LandlordSigninSuccess.class);
+                                    intent.setClass(Registered.this, Signin.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

@@ -14,9 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.pccu.LoginSuccess.StudentSigninSuccess;
 import com.example.pccu.LoginSuccess.LandlordSigninSuccess;
-import com.example.pccu.MainActivity;
+import com.example.pccu.LoginSuccess.StudentSigninSuccess;
 import com.example.pccu.R;
 import com.example.pccu.Registered.Registered;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -119,16 +118,22 @@ public class Signin extends AppCompatActivity {
                                     if (emailVerified == true) {//確認是否驗證信箱
                                         check(number);
                                         Toast.makeText(Signin.this, R.string.sign_success, Toast.LENGTH_SHORT).show();
-                                        if (landlordId.equals(account)) {
-                                            Log.i("比對結果", "比對成功");
-                                            Intent intent = new Intent();
-                                            intent.setClass(Signin.this, LandlordSigninSuccess.class);
-                                            startActivity(intent);
-                                        } else if (studentId.equals(account)) {
-                                            Log.i("比對結果", "比對成功");
-                                            Intent intent = new Intent();
-                                            intent.setClass(Signin.this, StudentSigninSuccess.class);
-                                            startActivity(intent);
+
+                                        if(number==1){//房東登入
+                                            if (landlordId.equals(account)) {
+                                                Log.i("比對結果", "比對成功");
+                                                Intent intent = new Intent();
+                                                intent.setClass(Signin.this, LandlordSigninSuccess.class);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                        if(number==2) {//學生登入
+                                            if (studentId.equals(account)) {
+                                                Log.i("比對結果", "比對成功");
+                                                Intent intent = new Intent();
+                                                intent.setClass(Signin.this, StudentSigninSuccess.class);
+                                                startActivity(intent);
+                                            }
                                         }
                                     }else {
                                         Toast.makeText(Signin.this, R.string.emailckeck, Toast.LENGTH_SHORT).show();
@@ -151,24 +156,17 @@ public class Signin extends AppCompatActivity {
         });
     }
 
-    public void check(int checkedId){
-        if(checkedId==1){
+    public void check(int checkedId){//判斷登入使用者身分
+        if(checkedId==1){//房東
             final String account = accountEdit.getText().toString();
             DocumentReference ref=db.collection("landlordinfo").document(account);
             landlordId=ref.getId();
             Log.i("回傳ID",landlordId);
-        } else if(checkedId==2){
+        } else if(checkedId==2){//學生
             final String account = accountEdit.getText().toString();
             DocumentReference ref=db.collection("studentinfo").document(account);
-            String studentId=ref.getId();
+            studentId=ref.getId();
             Log.i("回傳ID",studentId);
         }
-    }
-
-
-    public void Bt_back(View v) {
-        Intent it = new Intent(Signin.this, MainActivity.class);
-        startActivity(it);
-        finish();
     }
 }

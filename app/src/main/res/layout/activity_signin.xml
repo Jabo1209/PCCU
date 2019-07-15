@@ -27,8 +27,8 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="261dp">
+        android:layout_width="194dp"
+        android:layout_height="304dp">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/account_layout"
@@ -40,8 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/alert_light_frame"
-                android:singleLine="true"
                 android:hint="@string/account"
+                android:singleLine="true"
                 android:textColor="#000000"
                 android:textSize="15sp" />
         </android.support.design.widget.TextInputLayout>
@@ -56,10 +56,10 @@
                 android:id="@+id/password_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:singleLine="true"
                 android:background="@android:drawable/alert_light_frame"
                 android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true"
                 android:textColor="#000000"
                 android:textSize="15sp" />
         </android.support.design.widget.TextInputLayout>
@@ -68,8 +68,8 @@
             android:id="@id/radiogroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/password_layout">
+            android:layout_below="@id/password_layout"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/landlord_radiobtn"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="房東"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/student_radiobtn"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="學生"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </RadioGroup>
 
         <Button
@@ -96,29 +96,12 @@
             android:layout_marginTop="0dp"
             android:text="@string/signin_btn" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="422dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/registered_btn"
-            android:onClick="Bt_back"
-            android:text="返回" />
-
         <Button
             android:id="@+id/registered_btn"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/signin_btn"
             android:text="@string/registered" />
-    </LinearLayout>
 
+    </RelativeLayout>
 </LinearLayout>

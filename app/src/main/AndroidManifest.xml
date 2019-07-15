@@ -29,9 +29,6 @@
             android:name=".Registered.Registered"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Search"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".LoginSuccess.StudentSigninSuccess"
             android:screenOrientation="portrait" />
         <activity android:name=".LoginSuccess.LandlordSigninSuccess"

@@ -9,8 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_chateroom;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_homepage;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_houseinfo;
-import com.example.pccu.Landlord_Fragment.LS_FragmentList_menu;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_upload;
+import com.example.pccu.More.FragmentList_main;
 import com.example.pccu.R;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class LandlordSigninSuccess extends AppCompatActivity {
         LS_FragmentList_houseinfo myFragment1 = new LS_FragmentList_houseinfo();
         LS_FragmentList_upload myFragment2 = new LS_FragmentList_upload();
         LS_FragmentList_chateroom myFragment3 = new LS_FragmentList_chateroom();
-        LS_FragmentList_menu myFragment4 = new LS_FragmentList_menu();
+        FragmentList_main myFragment4 = new FragmentList_main();
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(myFragment0);
         fragmentList.add(myFragment1);
