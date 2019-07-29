@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.pccu.R;
 import com.example.pccu.Student_Fragment.SS_FragmentList_chateroom;
 import com.example.pccu.Student_Fragment.SS_FragmentList_homepage;
-import com.example.pccu.More.FragmentList_main;
+import com.example.pccu.More.FragmentMore_main;
 import com.example.pccu.Student_Fragment.SS_FragmentList_search;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class StudentSigninSuccess extends AppCompatActivity {
         SS_FragmentList_homepage myFragment0 = new SS_FragmentList_homepage();
         SS_FragmentList_search myFragment1 = new SS_FragmentList_search();
         SS_FragmentList_chateroom myFragment2 = new SS_FragmentList_chateroom();
-        FragmentList_main myFragment3 = new FragmentList_main();
+        FragmentMore_main myFragment3 = new FragmentMore_main();
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(myFragment0);
         fragmentList.add(myFragment1);

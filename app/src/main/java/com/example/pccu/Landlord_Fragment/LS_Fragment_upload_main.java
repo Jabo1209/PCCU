@@ -1,4 +1,4 @@
-package com.example.pccu.More;
+package com.example.pccu.Landlord_Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.pccu.R;
 
+public class LS_Fragment_upload_main extends Fragment {
 
-public class FragmentList_main extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_more, container, false);
+        View view = inflater.inflate(R.layout.activity_upload_frame, container, false);
 
         initView(view);
         return view;
@@ -23,11 +23,9 @@ public class FragmentList_main extends Fragment{
 
     private void initView(View view){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        Fragment_list fragment = new Fragment_list();
-        transaction.add(R.id.frame, fragment);
+        LS_FragmentList_upload fragment = new LS_FragmentList_upload();
+        transaction.add(R.id.frame1, fragment);
         transaction.commit();
     }
 }

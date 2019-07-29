@@ -9,8 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_chateroom;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_homepage;
 import com.example.pccu.Landlord_Fragment.LS_FragmentList_houseinfo;
-import com.example.pccu.Landlord_Fragment.LS_FragmentList_upload;
-import com.example.pccu.More.FragmentList_main;
+import com.example.pccu.Landlord_Fragment.LS_Fragment_upload_main;
+import com.example.pccu.More.FragmentMore_main;
 import com.example.pccu.R;
 
 import java.util.ArrayList;
@@ -47,9 +47,9 @@ public class LandlordSigninSuccess extends AppCompatActivity {
     private void setViewPager(){
         LS_FragmentList_homepage myFragment0 = new LS_FragmentList_homepage();
         LS_FragmentList_houseinfo myFragment1 = new LS_FragmentList_houseinfo();
-        LS_FragmentList_upload myFragment2 = new LS_FragmentList_upload();
+        LS_Fragment_upload_main myFragment2 = new LS_Fragment_upload_main();
         LS_FragmentList_chateroom myFragment3 = new LS_FragmentList_chateroom();
-        FragmentList_main myFragment4 = new FragmentList_main();
+        FragmentMore_main myFragment4 = new FragmentMore_main();
         List<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(myFragment0);
         fragmentList.add(myFragment1);

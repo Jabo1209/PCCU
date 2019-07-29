@@ -1,5 +1,6 @@
 package com.example.pccu.More;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.pccu.Login.Signin;
 import com.example.pccu.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Fragment_list extends Fragment {
 
@@ -47,6 +50,16 @@ public class Fragment_list extends Fragment {
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
+            }
+        });
+
+        view.findViewById(R.id.log_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), Signin.class);
+                startActivity(intent);
             }
         });
     }

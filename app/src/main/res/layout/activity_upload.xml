@@ -270,27 +270,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical">
-
             <Button
                 android:id="@+id/select_btn"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="@string/pick_img" />
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/upload_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/select_btn"></android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
-
+                android:text="@string/nextstep" />
     </LinearLayout>
 
     <LinearLayout
@@ -298,12 +282,5 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/send"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/send" />
-    </LinearLayout>
+        android:orientation="horizontal"/>
 </LinearLayout>
