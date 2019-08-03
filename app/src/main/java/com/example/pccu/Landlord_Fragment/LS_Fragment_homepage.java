@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import com.example.pccu.R;
 
 
-public class LS_FragmentList_houseinfo extends Fragment{
+public class LS_Fragment_homepage extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_houseinfo, container, false);
+        View view = inflater.inflate(R.layout.activity_homepage, container, false);
         return view;
     }
 }

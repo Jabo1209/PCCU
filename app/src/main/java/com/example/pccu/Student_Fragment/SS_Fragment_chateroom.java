@@ -1,4 +1,4 @@
-package com.example.pccu.Landlord_Fragment;
+package com.example.pccu.Student_Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.example.pccu.R;
 
 
-public class LS_FragmentList_chateroom extends Fragment{
+public class SS_Fragment_chateroom extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

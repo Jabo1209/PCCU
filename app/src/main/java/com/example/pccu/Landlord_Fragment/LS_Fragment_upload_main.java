@@ -24,7 +24,7 @@ public class LS_Fragment_upload_main extends Fragment {
     private void initView(View view){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        LS_FragmentList_upload fragment = new LS_FragmentList_upload();
+        LS_Fragment_upload fragment = new LS_Fragment_upload();
         transaction.add(R.id.frame1, fragment);
         transaction.commit();
     }

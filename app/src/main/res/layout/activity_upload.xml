@@ -270,11 +270,11 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/select_btn"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/nextstep" />
+        <Button
+            android:id="@+id/uploadimage"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="上傳照片" />
     </LinearLayout>
 
     <LinearLayout
@@ -282,5 +282,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/select_btn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nextstep" />
+    </LinearLayout>
 </LinearLayout>

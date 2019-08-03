@@ -28,11 +28,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class LS_FragmentList_upload extends Fragment {
+public class LS_Fragment_upload extends Fragment {
 
     private Spinner spinner1,spinner2,spinner3,spinner4,spinner5,spinner6;
     private EditText et_title,et_money,et_address,et_remark;
-    private Button nextStepBtn;
+    private Button send,nextStepBtn;
     private String db_title,db_room,db_parkingspace,db_pet,db_money,db_address,db_waterfee,db_electricityfee,db_internet,db_remark;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -57,7 +57,8 @@ public class LS_FragmentList_upload extends Fragment {
         et_money=(EditText)view.findViewById(R.id.money);
         et_address=(EditText)view.findViewById(R.id.address);
         et_remark=(EditText)view.findViewById(R.id.remark);
-        nextStepBtn = (Button)view.findViewById(R.id.select_btn);
+        send = (Button)view.findViewById(R.id.select_btn);
+        nextStepBtn=(Button)view.findViewById(R.id.uploadimage);
 
 
         //房型選單
@@ -168,49 +169,10 @@ public class LS_FragmentList_upload extends Fragment {
             }
         });
 
+        //切換到上傳照片
         nextStepBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db = FirebaseFirestore.getInstance();
-                user= FirebaseAuth.getInstance().getCurrentUser();
-
-                db_title=et_title.getText().toString();
-                db_money=et_money.getText().toString();
-                db_address=et_address.getText().toString();
-                db_remark=et_remark.getText().toString();
-
-                Map<String, Object> upload = new HashMap<>();
-
-                upload.put("Tittle",db_title);
-                upload.put("Room",db_room);
-                upload.put("Parkspace",db_parkingspace);
-                upload.put("Pet",db_pet);
-                upload.put("Money",db_money);
-                upload.put("Address",db_address);
-                upload.put("WaterFee",db_waterfee);
-                upload.put("ElectricityFee",db_electricityfee);
-                upload.put("Internet",db_internet);
-                upload.put("Remark",db_remark);
-                upload.put("Date",new Date());
-                upload.put("UserID",user.getUid());
-
-                db.collection("houseinfo")
-                        .document()
-                        .set(upload)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.i("資料庫新增", "新增成功");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.i("資料庫新增", "新增失敗");
-                            }
-                        });
-                Toast.makeText(getActivity(),"上傳成功", Toast.LENGTH_SHORT).show();
-
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 LS_Fragment_upload_picture fragment = new LS_Fragment_upload_picture();
                 manager.beginTransaction()
@@ -221,9 +183,74 @@ public class LS_FragmentList_upload extends Fragment {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
 
+
                 Bundle bundle=new Bundle();
                 bundle.putString("title",et_title.getText().toString());
                 fragment.setArguments(bundle);
+            }
+        });
+
+        //執行上傳房屋資訊到資料庫
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = FirebaseFirestore.getInstance();
+                user= FirebaseAuth.getInstance().getCurrentUser();
+
+                db_title=et_title.getText().toString();
+                db_money=et_money.getText().toString();
+                db_address=et_address.getText().toString();
+                db_remark=et_remark.getText().toString();
+
+
+                Map<String, Object> upload = new HashMap<>();
+
+                upload.put("Title",db_title);
+                upload.put("Room",db_room);
+                upload.put("Parkspace",db_parkingspace);
+                upload.put("Pet",db_pet);
+                upload.put("Money",db_money);
+                upload.put("Address",db_address);
+                upload.put("WaterFee",db_waterfee);
+                upload.put("ElectricityFee",db_electricityfee);
+                upload.put("Internet",db_internet);
+                upload.put("Remark",db_remark);
+                upload.put("Date",new Date());
+
+                //上傳房屋資訊到房屋資料庫
+                db.collection("houseinfo")
+                        .document()
+                        .set(upload)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.i("房屋資料庫新增", "新增成功");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.i("房屋資料庫新增", "新增失敗");
+                            }
+                        });
+                //上傳房屋資訊到房東個人資料庫
+                db.collection(user.getUid())
+                        .document()
+                        .set(upload)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.i("房東資料庫新增", "新增成功");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.i("房東資料庫新增", "新增失敗");
+                            }
+                        });
+
+                Toast.makeText(getActivity(),"上傳成功", Toast.LENGTH_SHORT).show();
 
                 et_title.setText("");
                 et_money.setText("");
