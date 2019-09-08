@@ -1,10 +1,15 @@
 package com.example.pccu.Student_Fragment;
 
+import java.util.Date;
+
 public class FirebaseBean {
 
     String Title,Room,Parkspace,Pet,Money,Address,WaterFee,ElectricityFee,Internet,Remark,ImageLink;
+    Date Date;
 
-    public FirebaseBean(){ }
+    public FirebaseBean(){
+
+    }
 
     public String getTitle() {
         return Title;
@@ -92,5 +97,13 @@ public class FirebaseBean {
 
     public void setRemark(String remark) {
         Remark = remark;
+    }
+
+    public Date getDate(){
+        return  Date;
+    }
+
+    public void setDate(Date date) {
+        Date = date;
     }
 }
