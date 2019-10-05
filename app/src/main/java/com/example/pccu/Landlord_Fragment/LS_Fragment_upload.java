@@ -219,7 +219,7 @@ public class LS_Fragment_upload extends Fragment {
 
                 //上傳房屋資訊到房屋資料庫
                 db.collection("houseinfo")
-                        .document()
+                        .document(db_title)
                         .set(upload)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -235,7 +235,7 @@ public class LS_Fragment_upload extends Fragment {
                         });
                 //上傳房屋資訊到房東個人資料庫
                 db.collection(user.getUid())
-                        .document()
+                        .document(db_title)
                         .set(upload)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

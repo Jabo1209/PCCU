@@ -44,10 +44,29 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.ViewHolder
 
         TextView Title,Room;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             super(itemView);
-            Title=(TextView)itemView.findViewById(R.id.title);
-            Room=(TextView)itemView.findViewById(R.id.room);
+            Title = (TextView) itemView.findViewById(R.id.title);
+            Room = (TextView) itemView.findViewById(R.id.room);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.OnItemClick(v, firebaseBeans.get(getLayoutPosition()));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(View view, FirebaseBean data);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }
