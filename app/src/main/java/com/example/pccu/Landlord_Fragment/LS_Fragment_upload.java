@@ -32,7 +32,7 @@ public class LS_Fragment_upload extends Fragment {
 
     private Spinner spinner1,spinner2,spinner3,spinner4,spinner5,spinner6;
     private EditText et_title,et_money,et_address,et_remark;
-    private Button send,nextStepBtn;
+    private Button nextStepBtn;
     private String db_title,db_room,db_parkingspace,db_pet,db_money,db_address,db_waterfee,db_electricityfee,db_internet,db_remark;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -57,8 +57,7 @@ public class LS_Fragment_upload extends Fragment {
         et_money=(EditText)view.findViewById(R.id.money);
         et_address=(EditText)view.findViewById(R.id.address);
         et_remark=(EditText)view.findViewById(R.id.remark);
-        send = (Button)view.findViewById(R.id.select_btn);
-        nextStepBtn=(Button)view.findViewById(R.id.uploadimage);
+        nextStepBtn=(Button)view.findViewById(R.id.next_btn);
 
 
         //房型選單
@@ -169,29 +168,8 @@ public class LS_Fragment_upload extends Fragment {
             }
         });
 
-        //切換到上傳照片
+        //執行上傳房屋資訊到資料庫&切換到上傳照片
         nextStepBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                LS_Fragment_upload_picture fragment = new LS_Fragment_upload_picture();
-                manager.beginTransaction()
-                        .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
-                                R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                        .replace(R.id.frame1, fragment)
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
-
-
-                Bundle bundle=new Bundle();
-                bundle.putString("title",et_title.getText().toString());
-                fragment.setArguments(bundle);
-            }
-        });
-
-        //執行上傳房屋資訊到資料庫
-        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 db = FirebaseFirestore.getInstance();
@@ -251,6 +229,26 @@ public class LS_Fragment_upload extends Fragment {
                         });
 
                 Toast.makeText(getActivity(),"上傳成功", Toast.LENGTH_SHORT).show();
+
+
+                if (et_title.getText().toString().length() == 0) {
+                    Toast.makeText(getActivity(), "請輸入標題", Toast.LENGTH_SHORT).show();
+                } else {
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    LS_Fragment_upload_picture fragment = new LS_Fragment_upload_picture();
+
+                    manager.beginTransaction()
+                            .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
+                                    R.anim.enter_left_to_right, R.anim.exit_left_to_right)
+                            .replace(R.id.frame1, fragment)
+                            .addToBackStack(null)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", et_title.getText().toString());
+                    fragment.setArguments(bundle);
+                }
 
                 et_title.setText("");
                 et_money.setText("");

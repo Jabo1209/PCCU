@@ -1,12 +1,15 @@
 package com.example.pccu.Login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,6 +128,7 @@ public class Signin extends AppCompatActivity {
                                                 Intent intent = new Intent();
                                                 intent.setClass(Signin.this, LandlordSigninSuccess.class);
                                                 startActivity(intent);
+                                                finish();
                                             }
                                         }
                                         if(number==2) {//學生登入
@@ -133,6 +137,7 @@ public class Signin extends AppCompatActivity {
                                                 Intent intent = new Intent();
                                                 intent.setClass(Signin.this, StudentSigninSuccess.class);
                                                 startActivity(intent);
+                                                finish();
                                             }
                                         }
                                     }else {
@@ -168,5 +173,31 @@ public class Signin extends AppCompatActivity {
             studentId=ref.getId();
             Log.i("回傳ID",studentId);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            ConfirmExit();//按返回鍵，則執行退出確認
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    public void ConfirmExit(){//退出確認
+        AlertDialog.Builder ad=new AlertDialog.Builder(Signin.this);
+        ad.setTitle("離開");
+        ad.setMessage("確定要離開此程式嗎?");
+        ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+            public void onClick(DialogInterface dialog, int i) {
+                // TODO Auto-generated method stub
+                Signin.this.finish();//關閉activity
+            }
+        });
+        ad.setNegativeButton("否",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int i) {
+                //不退出不用執行任何操作
+            }
+        });
+        ad.show();//顯示對話框
     }
 }

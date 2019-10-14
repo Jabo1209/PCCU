@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +40,7 @@ public class LS_Fragment_upload_picture extends Fragment {
     private ProgressDialog progressDialog;
     int index = 0;
     TextView textView;
-    Button send;
+    Button send,back;
     ImageButton choose;
     String title;
 
@@ -56,12 +58,15 @@ public class LS_Fragment_upload_picture extends Fragment {
         textView = view.findViewById(R.id.text);
         choose = view.findViewById(R.id.select_btn);
         send = view.findViewById(R.id.upload);
+        back=view.findViewById(R.id.back);
 
         initView(view);
         return view;
     }
 
     public void initView(View view){
+
+        back.setVisibility(View.GONE);
 
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +103,22 @@ public class LS_Fragment_upload_picture extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                LS_Fragment_upload fragment = new LS_Fragment_upload();
+
+                manager.beginTransaction()
+                        .setCustomAnimations(R.anim.enter_left_to_right, R.anim.exit_left_to_right,
+                                R.anim.enter_right_to_left, R.anim.exit_right_to_left)
+                        .replace(R.id.frame1, fragment)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
             }
         });
     }
@@ -139,6 +160,7 @@ public class LS_Fragment_upload_picture extends Fragment {
                 progressDialog.dismiss();
                 textView.setText("照片上傳成功");
                 send.setVisibility(View.GONE);
+                back.setVisibility(View.VISIBLE);
                 ImageList.clear();
             }
         });

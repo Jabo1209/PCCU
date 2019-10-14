@@ -151,7 +151,7 @@ public class SS_Fragment_search extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager manager = getActivity().getSupportFragmentManager();
-                SS_Fragment_search_result fragment = new SS_Fragment_search_result();
+                SS_Fragment_search_houselist fragment = new SS_Fragment_search_houselist();
                 manager.beginTransaction()
                         .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
                                 R.anim.enter_left_to_right, R.anim.exit_left_to_right)

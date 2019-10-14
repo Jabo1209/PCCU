@@ -60,6 +60,7 @@ public class Fragment_list extends Fragment {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), Signin.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
     }

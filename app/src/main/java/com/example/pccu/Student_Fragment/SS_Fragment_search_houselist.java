@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pccu.AdapterSearch;
+import com.example.pccu.FirebaseBean;
 import com.example.pccu.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class SS_Fragment_search_result extends Fragment {
+public class SS_Fragment_search_houselist extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<FirebaseBean> arrayList=new ArrayList<>();
@@ -35,7 +37,7 @@ public class SS_Fragment_search_result extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_search_result, container, false);
+        View view = inflater.inflate(R.layout.activity_search_houselist, container, false);
 
         arrayList=new ArrayList<>();
 
@@ -104,6 +106,14 @@ public class SS_Fragment_search_result extends Fragment {
                         bundle.putString("electricityfee",data.getElectricityFee());
                         bundle.putString("internet",data.getInternet());
                         bundle.putString("remark",data.getRemark());
+
+
+                        bundle.putString("room",room);
+                        bundle.putString("parkingspace",parkingspace);
+                        bundle.putString("pet",pet);
+                        bundle.putString("waterfee",waterfee);
+                        bundle.putString("electricityfee",electricityfee);
+                        bundle.putString("internet",internet);
                         fragment.setArguments(bundle);
                     }
                 });
