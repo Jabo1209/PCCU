@@ -62,53 +62,7 @@ public class LS_Fragment_houseinfo_list extends Fragment{
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light);
 
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        db=FirebaseFirestore.getInstance();
-        arrayList=new ArrayList<>();
-        Query query=db.collection(user.getUid());
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                QuerySnapshot querySnapshot = task.isSuccessful() ? task.getResult() : null;
-                for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
-                    arrayList.add(documentSnapshot.toObject(FirebaseBean.class));
-                }
-            }
-        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                adapterSearch=new AdapterSearch(arrayList,getActivity().getApplicationContext());
-                recyclerView.setAdapter(adapterSearch);
-                recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
-                adapterSearch.setOnItemClickListener(new AdapterSearch.OnItemClickListener() {
-                    @Override
-                    public void OnItemClick(View view, FirebaseBean data) {
-                        FragmentManager manager = getActivity().getSupportFragmentManager();
-                        LS_Fragment_houseinfo fragment = new LS_Fragment_houseinfo();
-                        manager.beginTransaction()
-                                .setCustomAnimations(R.anim.enter_right_to_left, R.anim.exit_right_to_left,
-                                        R.anim.enter_left_to_right, R.anim.exit_left_to_right)
-                                .replace(R.id.frame_lshouseinfo, fragment)
-                                .addToBackStack(null)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .commit();
-
-                        Bundle bundle=new Bundle();
-                        bundle.putString("title",data.getTitle());
-                        bundle.putString("room",data.getRoom());
-                        bundle.putString("parkingspace",data.getParkspace());
-                        bundle.putString("pet",data.getPet());
-                        bundle.putString("money",data.getMoney());
-                        bundle.putString("address",data.getAddress());
-                        bundle.putString("waterfee",data.getWaterFee());
-                        bundle.putString("electricityfee",data.getElectricityFee());
-                        bundle.putString("internet",data.getInternet());
-                        bundle.putString("remark",data.getRemark());
-                        fragment.setArguments(bundle);
-                    }
-                });
-            }
-        });
+        research();
     }
 
     private void research(){
