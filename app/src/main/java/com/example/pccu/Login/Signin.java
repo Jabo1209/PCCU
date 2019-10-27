@@ -22,12 +22,15 @@ import com.example.pccu.LoginSuccess.StudentSigninSuccess;
 import com.example.pccu.R;
 import com.example.pccu.Registered.Registered;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class Signin extends AppCompatActivity {
@@ -87,8 +90,10 @@ public class Signin extends AppCompatActivity {
                 }else if(!accountEdit.getText().toString().matches("")){
                     if(checkedId==R.id.landlord_radiobtn){
                         number=1;
+                        Log.i("選擇房東", String.valueOf(number));
                     }else if(checkedId==R.id.student_radiobtn){
                         number=2;
+                        Log.i("選擇學生", String.valueOf(number));
                     }
                 }
             }
@@ -118,27 +123,73 @@ public class Signin extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     user = FirebaseAuth.getInstance().getCurrentUser();
                                     boolean emailVerified = user.isEmailVerified();
+                                    Log.i("選擇對象", String.valueOf(number));
                                     if (emailVerified == true) {//確認是否驗證信箱
-                                        check(number);
-                                        Toast.makeText(Signin.this, R.string.sign_success, Toast.LENGTH_SHORT).show();
-
                                         if(number==1){//房東登入
-                                            if (landlordId.equals(account)) {
-                                                Log.i("比對結果", "比對成功");
-                                                Intent intent = new Intent();
-                                                intent.setClass(Signin.this, LandlordSigninSuccess.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }
-                                        if(number==2) {//學生登入
-                                            if (studentId.equals(account)) {
-                                                Log.i("比對結果", "比對成功");
-                                                Intent intent = new Intent();
-                                                intent.setClass(Signin.this, StudentSigninSuccess.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
+                                            Query query=db.collection("studentinfo").whereEqualTo("Account",account);
+                                            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    QuerySnapshot querySnapshot = task.isSuccessful() ? task.getResult() : null;
+                                                    for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
+                                                        if (documentSnapshot.getId().equals(account)){
+                                                            Toast.makeText(Signin.this, "找不到此帳號，請重新確認帳號密碼是否有輸入錯誤或者身分選擇錯誤", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+                                            db.collection("landlordinfo").whereEqualTo("Account",account)
+                                                    .get()
+                                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                    for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                                                        Log.i("第一個",documentSnapshot.getId());
+                                                        Log.i("第二個",account);
+                                                        if (documentSnapshot.getId().equals(account)){
+                                                            Toast.makeText(Signin.this, R.string.sign_success, Toast.LENGTH_SHORT).show();
+                                                            Intent intent = new Intent();
+                                                            intent.setClass(Signin.this, LandlordSigninSuccess.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        } else if(number==2) {//學生登入
+                                            Query query=db.collection("landlordinfo").whereEqualTo("Account",account);
+                                            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    QuerySnapshot querySnapshot = task.isSuccessful() ? task.getResult() : null;
+                                                    for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
+                                                        if (documentSnapshot.getId().equals(account)){
+                                                            Toast.makeText(Signin.this, "找不到此帳號，請重新確認帳號密碼是否有輸入錯誤或者身分選擇錯誤", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+                                            db.collection("studentinfo").whereEqualTo("Account",account)
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    QuerySnapshot querySnapshot = task.isSuccessful() ? task.getResult() : null;
+                                                    for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
+                                                        Log.i("第一個",documentSnapshot.getId());
+                                                        Log.i("第二個",account);
+                                                        if (documentSnapshot.getId().equals(account)){
+                                                            Toast.makeText(Signin.this, R.string.sign_success, Toast.LENGTH_SHORT).show();
+                                                            Intent intent = new Intent();
+                                                            intent.setClass(Signin.this, StudentSigninSuccess.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }
+                                                }
+                                            });
                                         }
                                     }else {
                                         Toast.makeText(Signin.this, R.string.emailckeck, Toast.LENGTH_SHORT).show();
@@ -159,20 +210,6 @@ public class Signin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    public void check(int checkedId){//判斷登入使用者身分
-        if(checkedId==1){//房東
-            final String account = accountEdit.getText().toString();
-            DocumentReference ref=db.collection("landlordinfo").document(account);
-            landlordId=ref.getId();
-            Log.i("回傳ID",landlordId);
-        } else if(checkedId==2){//學生
-            final String account = accountEdit.getText().toString();
-            DocumentReference ref=db.collection("studentinfo").document(account);
-            studentId=ref.getId();
-            Log.i("回傳ID",studentId);
-        }
     }
 
     @Override
@@ -201,3 +238,9 @@ public class Signin extends AppCompatActivity {
         ad.show();//顯示對話框
     }
 }
+
+
+
+/*
+Toast.makeText(Signin.this, "找不到此帳號，請重新確認帳號密碼是否有輸入錯誤或者身分選擇錯誤", Toast.LENGTH_SHORT).show();
+ */
